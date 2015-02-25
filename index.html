@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<a href="#search/sa">SA</a>
+<a href="#search/int">INT</a>
+<div data-country="sa" >South africa</div>
+<div data-country="int" >International</div>
+<script src="jquery.js"></script>
+<script src="underscore.js"></script>
+<script src="backbone.js"></script>
+<script>
+
+jQuery(document).ready(function($) {
+	jQuery(document).on('click', '#button', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		jQuery('div[data-country="sa"]').slideUp();
+	});
+});
+
+</script>
+
+
+<script>
+var AppRouter = Backbone.Router.extend({
+  routes: {
+    "help":                 "help",    // #help
+    "search/:query":        "search" // #search/kiwis
+  },
+
+  help: function() {
+    alert('test');
+},
+  search: function(query) {
+   jQuery('div[data-country="'+query+'"]').slideUp();
+}
+});
+
+    // Initiate the router
+    var app_router = new AppRouter;
+    // Start Backbone history a necessary step for bookmarkable URL's
+    Backbone.history.start();
+</script>
+</body>
+</html>
